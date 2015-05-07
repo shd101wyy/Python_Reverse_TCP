@@ -19,6 +19,9 @@ schtasks /CREATE /XML path_to_schtasks_template.xml /TN malicious_task_name
 - <strong> dist/reverse_tcp.exe </strong>
     - packed <strong>exe</strong> file using <strong>pyinstaller</strong> mentioned above.
     - <storng>don't run</strong> this file on your machine, it is <strong>dangerous</strong>(as it will connect to my attack machine at ip 45.55.139.173).
+- <strong>cleanup.bat (for Windows)</strong>
+    - remove our simple stupid trojan from victim's system
+    - double click it to cleanup.
 
 ### How to Hack (For Windows)
 1. Edit the variable <strong> attacker_ip  </strong> in <strong> reverse_tcp.py </strong> to attacker's ip address
