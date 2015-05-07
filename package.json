@@ -1,0 +1,26 @@
+{
+  "name": "reverse_tcp",
+  "version": "0.0.1",
+  "description": "reverse tcp listener",
+  "main": "listener.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shd101wyy/Python_Reverse_TCP.git"
+  },
+  "keywords": [
+    "reverse",
+    "tcp"
+  ],
+  "author": "Yiyi Wang (shd101wyy)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shd101wyy/Python_Reverse_TCP/issues"
+  },
+  "homepage": "https://github.com/shd101wyy/Python_Reverse_TCP#readme",
+  "dependencies":{
+      "colors": "latest"
+  }
+}
