@@ -18,7 +18,7 @@ import socket, subprocess, os, platform, sys
    for schtasks program hack (windows only)
 '''
 def generateScheduleTask(schedule_interval_minutes):
-    return """ <?xml version="1.0" encoding="UTF-16"?>
+    return """<?xml version="1.0" encoding="UTF-16"?>
 <Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
   <RegistrationInfo>
   </RegistrationInfo>
