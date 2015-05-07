@@ -40,7 +40,7 @@ schtasks /CREATE /XML path_to_schtasks_template.xml /TN malicious_task_name
 * The <Strong>reverse_tcp.py</strong>(<strong>reverse_tcp.exe</strong>) file will first copy itself to %Appdata% folder, then create <strong>schtasks_template.xml</strong> file for scheduling tasks
 * It then runs <strong>schtasks</strong> program and setup the running task so that the victim will try connecting to attacker every 30 minutes by default.
 * After that, victim will try to connect to attacker's ip and port.
-* Attack will send commands to victim, and victim will execute those commands on their machine.
+* Attacker will send commands to victim, and victim will execute those commands on their machine.
 
 
 
@@ -51,3 +51,4 @@ We first tried <strong>metasploit</strong> and used the <strong>windows/shell_re
 - <strong> Windows Defender </strong> is powerful.
 - <strong> Not all metasploit payloads </strong> work on Windows/
 - <strong> Security awareness is important </strong>
+- <strong> Security is fun. CS460 is an aweasome class.</strong>
