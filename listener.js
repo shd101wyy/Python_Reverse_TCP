@@ -9,7 +9,7 @@
     list                    ---   list victims
     connect num             ---   connect to one victim
                                   eg 'connect 0' will connect to the first victim in victim list
-    schedule n_minutes      ---   schedule attack, ask victim to try to connect to attacker every n_minutes
+    schedule n_minutes      ---   schedule attack(for Windows only), force victim to try to connect to attacker every n_minutes
  */
 
 var net = require("net"); // load tcp library
@@ -55,7 +55,7 @@ rl.on('line', function(line) {
                     "list                    ---   list victims \n" +
                     "connect num             ---   connect to one victim\n" +
                     "                              eg 'connect 0' will connect to the first victim in victim list\n" +
-                    "schedule n_minutes      ---   schedule attack, ask victim to try to connect to attacker every n_minutes");
+                    "schedule n_minutes      ---   schedule attack(for Windows only), force victim to try to connect to attacker every n_minutes");
         continueRepl();
     }
     else if (line === "list"){
