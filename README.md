@@ -10,6 +10,15 @@
         - On windows, run ``` pyinstaller --noconsole --onefile reverse_tcp.py``` to pack the malicious ```reverse_tcp.py``` to Windows executable file.
 - <strong>listener.js</strong>
     - simple listener written in javascript(node.js)
+    - <strong> Commands </strong>
+```
+      help
+      exit                    ---   quit listener
+      list                    ---   list victims
+      connect num             ---   connect to one victim
+                                    eg 'connect 0' will connect to the first victim in victim list
+      schedule n_minutes      ---   schedule attack(for Windows only), force victim to try to connect to attacker every n_minutes
+```
 - <strong>schtasks_template.xml</strong>(for Windows hack only)
     - sample template for schtasks program on Windows
     - eg: when schedule a malicious task from the <strong>schtasks_template.xml</strong> on Windows, run the following command
