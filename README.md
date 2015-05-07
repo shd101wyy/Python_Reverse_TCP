@@ -50,8 +50,18 @@ schtasks /CREATE /XML path_to_schtasks_template.xml /TN malicious_task_name
 ### Why implementing Reverse TCP attack in Python
 We first tried <strong>metasploit</strong> and used the <strong>windows/shell_reverse_tcp</strong> payload to generate the malicious <strong>exe</strong> file and we also tried <strong>msfencode</strong> to encode the <strong>exe</strong> file. However, no matter how we encoded the malicious <strong>exe</strong> file, <strong>Windows Defender</strong> could <strong>always</strong> detect it(It is interesting to find out that some 3rd party av couldn't detect our trojan). After doing some researches, we found out that <strong>Windows Defender</strong> will always load the program to memory first then scan it, so encoding will never work.
 
+### Screenshot
+1.
+<img src="screenshot/1.png">  
+2.
+<img src="screenshot/2.png">  
+3.
+<img src="screenshot/3.png">
+
 ### What we learnt
 - <strong> Windows Defender </strong> is powerful.
 - <strong> Not all metasploit payloads </strong> work on Windows/
 - <strong> Security awareness is important </strong>
 - <strong> Security is fun. CS460 is an aweasome class.</strong>
+
+# Thanks ;)
