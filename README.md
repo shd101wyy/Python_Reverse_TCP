@@ -71,6 +71,6 @@ We first tried <strong>metasploit</strong> and used the <strong>windows/shell_re
 - <strong> Windows Defender </strong> is powerful.
 - <strong> Not all metasploit payloads </strong> work on Windows/
 - <strong> Security awareness is important </strong>
-- <strong> Security is fun. CS460 is an aweasome class.</strong>
+- <strong> Security is fun. CS460 is an awesome class.</strong>
 
 # Thanks ;)
