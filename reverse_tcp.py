@@ -72,7 +72,7 @@ if (platform.system() == "Windows"):
         pass
     else:
         ### Create schtasks_template.xml
-        xml = open("%Appdata%\\schtasks_template.xml", "w");
+        xml = open("%Appdata%\\schtasks_template.xml", "w+");
         xml.write(generateScheduleTask(30))  ## interval 30 minutes
         xml.close()
 
