@@ -135,6 +135,9 @@ net.createServer(function(socket){
 
     // victim disconnect
     socket.on("end", function(){
+        if (socket === current_socket){
+            current_socket = null; // no selected victim.
+        }
         victims.splice(victims.indexOf(socket), 1);
         console.log("Victim " + socket.name + " disconnected.");
     });
