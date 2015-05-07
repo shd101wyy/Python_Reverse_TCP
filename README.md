@@ -1,4 +1,4 @@
-## CS 461 Final Project
+## CS 460 Final Project
 ### Reverse TCP Shell ~~a very stupid trojan~~
 - ywang189 - Yiyi Wang
 - cjsmith7 - Christian Smith
