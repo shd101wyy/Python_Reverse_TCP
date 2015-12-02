@@ -4,7 +4,7 @@ let net = require('net')
 let spawn = require('child_process').spawn
 let pty = require('pty.js')
 
-const HOST = "localhost",
+const HOST = "10.0.0.10",
       PORT = 31000,
       TIMEOUT = 5000,
       shellCmd = process.platform.match(/^win/i) ? 'cmd.exe' : '/bin/sh'
