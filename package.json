@@ -20,7 +20,8 @@
     "url": "https://github.com/shd101wyy/Python_Reverse_TCP/issues"
   },
   "homepage": "https://github.com/shd101wyy/Python_Reverse_TCP#readme",
-  "dependencies":{
-      "colors": "latest"
+  "dependencies": {
+    "colors": "latest",
+    "pty.js": "^0.3.0"
   }
 }
